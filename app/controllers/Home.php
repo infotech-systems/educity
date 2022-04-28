@@ -54,7 +54,9 @@ class Home extends SM_Controller
 			foreach($cpatchas as $captcha):
 				if($captcha['image_name']):
 				$path='./uploads/captcha/'.$captcha['image_name'];
-					unlink($path);
+					if(file_exists($path)):
+						unlink($path);
+					endif;
 				endif;
 				$this->captcha->delete_data($captcha['captcha_id']);
 			endforeach;
