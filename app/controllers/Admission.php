@@ -12,6 +12,9 @@ class Admission extends SM_Controller
 	   $this->load->model('admin/relations');
 	   $this->load->helper('captcha');
 	   $this->load->model('admin/captcha'); 
+	   $this->load->library('email');
+	   $this->load->library('parser');
+
 	}
 	public function index()
 	{
@@ -326,6 +329,9 @@ class Admission extends SM_Controller
 						$this->session->set_flashdata('message', "alertify.success('Your message send Successfully..');");
 						$data['success'] = true; 
 					}
+					  else{
+                        show_error($this->email->print_debugger());
+                    }
 			else:
 				$this->session->set_flashdata('message', "alertify.error('Error: Your data not added');");
 			endif;

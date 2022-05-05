@@ -44,7 +44,8 @@
                       </div>  
                      <div class="hotline-content">
                         <h4>Phone</h4>
-                        <a href="#">+91 <?php echo $orgn[0]['cont_per_no']; ?> </a>
+                        <a href="#">+91 <?php echo $orgn[0]['cont_per_no']; ?> </a><br>
+                        <a href="#">+91 <?php echo $orgn[0]['cont_per_no2']; ?> </a>
                      </div>
                     </div>
                   </div>

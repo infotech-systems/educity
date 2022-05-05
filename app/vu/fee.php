@@ -14,7 +14,7 @@ if($fees):
         <div class="col-md-12">
             <div class="form-group">
                 <div class="col-sm-6">
-                    <input name="check[]" class="form-control" type="checkbox" checked  value="<?php echo $fee['fee_id']; ?>" style="visibility:hidden;">
+                    <input name="check[]" class="form-control" type="hidden" checked  value="<?php echo $fee['fee_id']; ?>" style="display:block;">
                     <input name="fee_desc[<?php echo $fee['fee_id']; ?>]" class="form-control" type="text" readonly value="<?php echo $fee['fee_desc']; ?>">
                 </div>
                 <div class="col-sm-6">

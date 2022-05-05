@@ -12,6 +12,7 @@
                   <div class="footer-content">
                     <ul>
                       <li><a href="#"><i class="fa fa-phone"></i>+91 <?php echo $orgn[0]['cont_per_no']; ?> (<?php echo $orgn[0]['orgn_abbr']; ?>)</a></li>
+                      <li><a href="#"><i class="fa fa-phone"></i>+91 <?php echo $orgn[0]['cont_per_no2']; ?> (<?php echo $orgn[0]['orgn_abbr']; ?>)</a></li>
                       <li><a href="mailto:http://<?php echo $orgn[0]['cont_per_email']; ?>"><i class="fa fa-envelope"></i><?php echo $orgn[0]['cont_per_email']; ?></a></li>
                       <li><a href="#"><i class="fa fa-map"></i><?php echo $orgn[0]['orgn_addr1']; ?></a></li>
                     </ul>

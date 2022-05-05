@@ -46,6 +46,7 @@ $cur_id3=$this->uri->segment(3);
                                     <ul>
                                         <li><a href="#"><i class="fa fa-send"></i> <?php echo $orgn[0]['orgn_addr1']; ?></a></li>
                                         <li><a href="#"><i class="fa fa-phone"></i>+91 <?php echo $orgn[0]['cont_per_no']; ?></a></li>
+                                        <li><a href="#"><i class="fa fa-phone"></i>+91 <?php echo $orgn[0]['cont_per_no2']; ?></a></li>
                                     </ul>
                                 </div>
                             </div>

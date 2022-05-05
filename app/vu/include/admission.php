@@ -22,7 +22,7 @@ $('#refresh').click(function(){
   });
 
 }) ; 
-
+/*
  $('#admissionsend').submit(function(e) {
 	var photo = $("#photo").val();
     var pay_photo = $("#pay_photo").val();
@@ -65,7 +65,7 @@ $('#refresh').click(function(){
 				}
 			}
 		});
-	});
+	});*/
    /* $('#dob').datepicker({
       autoclose: true
     });*/
