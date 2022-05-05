@@ -287,9 +287,45 @@ class Admission extends SM_Controller
                     } 
                 }	
                 $this->students->add_trans($receivedata);	
+				$content='
+					<table width="97%" cellpadding="4" cellspacing="4" border="0" style="border:1px solid #c0251b;">
+					<tr>
+					<td width="113" align="left" class="text">Name</td>
+					<td width="5" align="left" class="text">:</td>
+					<td align="left" colspan="5" class="text">'.$this->input->post('form_name').'</td>
+					</tr>
+					<tr>
+					<td width="113" align="left" class="text">Address</td>
+					<td width="5" align="left" class="text">:</td>
+					<td align="left" colspan="5" class="text">'.$this->input->post('form_addr').'</td>
+					</tr>
+					<tr>
+					<td width="113" align="left" class="text">Mobile</td>
+					<td width="5" align="left" class="text">:</td>
+					<td align="left" colspan="5" class="text">'.$this->input->post('contact_no').'</td>
+					</tr>
+					<tr>
+					<td width="113" align="left" class="text">Father / Guardian</td>
+					<td width="5" align="left" class="text">:</td>
+					<td align="left" colspan="5" class="text">'.$this->input->post('guardian_name').'</td>
+					</tr>
+					</table>
+					';          
+					$orgns = $this->orgn->orgn_dtls2();
+					//print_r($orgns);
+				//	$this->email->from($email, $your_name);
+					$this->email->from('contact@educitywb.in', 'Contact');
+					$this->email->to('accounts@educitywb.in'); 
+					$this->email->subject('Admission');
+					
+					//$this->email->bcc('churchart.ganguly@gmail.com');
 
-				$this->session->set_flashdata('message', "alertify.success('Your message send Successfully..');");
-				$data['success'] = true; 
+					$this->email->message($content);  
+					if($this->email->send())
+					{
+						$this->session->set_flashdata('message', "alertify.success('Your message send Successfully..');");
+						$data['success'] = true; 
+					}
 			else:
 				$this->session->set_flashdata('message', "alertify.error('Error: Your data not added');");
 			endif;

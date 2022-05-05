@@ -12,6 +12,8 @@ class Contact extends SM_Controller
        $this->load->helper('captcha');
 	   $this->load->model('admin/captcha'); 
 	   $this->load->model('admin/mails'); 
+	   $this->load->library('email');
+	   $this->load->library('parser');
 	}
 	public function index()
 	{
@@ -126,29 +128,74 @@ class Contact extends SM_Controller
 			$form_number=$this->input->post('form_number');
 			$messagess=$this->input->post('messagess');
 			$email=$this->input->post('form_email');
-            $branch=$this->branchs->branch_by_path('kolkata');
+			$content='
+			<table width="97%" cellpadding="4" cellspacing="4" border="0" style="border:1px solid #c0251b;">
+			<tr>
+			<td width="113" align="left" class="text">Name</td>
+			<td width="5" align="left" class="text">:</td>
+			<td align="left" colspan="5" class="text">'.$your_name.'</td>
+			</tr>
+			<tr>
+			<td width="113" align="left" class="text">Email ID</td>
+			<td width="5" align="left" class="text">:</td>
+			<td align="left" colspan="5" class="text">'.$email.'</td>
+			</tr>
+			<tr>
+			<td width="113" align="left" class="text">Mobile</td>
+			<td width="5" align="left" class="text">:</td>
+			<td align="left" colspan="5" class="text">'.$form_number.'</td>
+			</tr>
+			<tr>
+			<td width="113" align="left" class="text">Subect</td>
+			<td width="5" align="left" class="text">:</td>
+			<td align="left" colspan="5" class="text">'.$form_subject.'</td>
+			</tr>
+			<tr>
+			<td width="113" align="left" class="text">Massage</td>
+			<td width="5" align="left" class="text">:</td>
+			<td align="left" colspan="5" class="text">'.$this->input->post('your_message').'</td>
+			</tr>
+			</table>
+			';          
+			$orgns = $this->orgn->orgn_dtls2();
+			//print_r($orgns);
+		//	$this->email->from($email, $your_name);
+			$this->email->from($email, $your_name);
+			$this->email->to('contact@educitywb.in'); 
+			$this->email->subject($form_subject);
+		//	$this->email->cc('foundationebs@gmail.com', $your_name);
+			$this->email->cc($email, $your_name);
+			
+			//$this->email->bcc('churchart.ganguly@gmail.com');
 
+			$this->email->message($content);  
+			if($this->email->send())
+			{
 				$mail_data=
 				array(
 					'mail_from'=>$email,	
 					'sender_name'=>$your_name,	
-					'mail_to'=>$branch->branch_id,
 					'mail_subject'=>$form_subject,
 					'mobile_no'=>$form_number,
 					'mail_content'=>$messagess,
 					'mail_type'=>'C',
 					'mail_time'=>date('Y-m-d H:i:s'),
 				);
-			$res=$this->mails->add_data($mail_data);
-            if($res)
-            {
-				$this->session->set_flashdata('message', "alertify.success('Your message send Successfully..');");
-			    $data['success'] = true; 
-			    $data['message'] = 'Your message send Successfully..'; 
+				$res=$this->mails->add_data($mail_data);
+				if($res)
+				{
+					$this->session->set_flashdata('message', "alertify.success('Your message send Successfully..');");
+					$data['success'] = true; 
+					$data['message'] = 'Your message send Successfully..'; 
+				}
+				else
+				{
+					$this->session->set_flashdata('message', "alertify.success('Your data Add Successfully..');");
+				}
 			}
 			else
 			{
-				 $this->session->set_flashdata('message', "alertify.success('Your data Add Successfully..');");
+				show_error($this->email->print_debugger());
 			}
 		}
 		echo json_encode($data);
