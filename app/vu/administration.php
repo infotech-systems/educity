@@ -15,6 +15,17 @@
         </div>
     </div>
 </div>
+<style>
+    p
+    {
+        margin:0 0 5px;
+    }
+    .educaremember-area .singlemember-area .member-over .member-name p {
+  font-size: 16px;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+</style>
  <!-- educaremember one area start Here -->
  <div class="educaremember-area">
             <div class="container">
@@ -50,7 +61,7 @@
                                     endif;
                                     ?>
                                     <p>Contact No: <?php echo $administration['contact_no']; ?></p>
-                                    <p>Email_id: <?php echo $administration['email_id']; ?></p>
+                                    <p>Email: <?php echo $administration['email_id']; ?></p>
                                 </div>
                                 
                             </div>                     
