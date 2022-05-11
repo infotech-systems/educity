@@ -41,8 +41,15 @@
                                 </div>
                                 <div class="member-name">
                                     <h4><a href="#"><?php echo $administration['adm_nm']; ?></a></h4>
+                                    <p>Designation: <?php echo $administration['adm_desig']; ?></p>
+                                    <?php
+                                    if(!empty($administration['subject'])):
+                                        ?>
+                                        <p>Subject: <?php echo $administration['subject']; ?></p>
+                                        <?php
+                                    endif;
+                                    ?>
                                     <p>Contact No: <?php echo $administration['contact_no']; ?></p>
-                                    <p>Extn: <?php echo $administration['extn']; ?></p>
                                     <p>Email_id: <?php echo $administration['email_id']; ?></p>
                                 </div>
                                 
