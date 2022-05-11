@@ -18,7 +18,7 @@ Class Users extends CI_Model
 	{
 		  $query=$this->db->select('uid,user_nm,user_id,current_status') 
 		  				  ->select('user_type,photo_path,page_per,orgn_id') 
-						  ->select('status,user_cont_no,mail_id,client_id') 
+						  ->select('status,user_cont_no,mail_id') 
 		                  ->where('md5(uid)', $id)
 		                  ->get('user_mas');
 		   if($query->num_rows())

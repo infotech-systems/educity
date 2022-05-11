@@ -1,13 +1,10 @@
 <script language="javascript">
-  $('#expertadd').submit(function(e) {
+  $('#administrationadd').submit(function(e) {
 		$("#loading").addClass('overlay dark');
     	$("#loading").html('<i class="fa fa-spinner fa-pulse"></i>');
 		e.preventDefault();
 		var me = $(this);
-		for (instance in CKEDITOR.instances) 
-		{
-       	CKEDITOR.instances[instance].updateElement();
-        }
+		
 		$.ajax({
 			url: me.attr('action'),
 			type: 'post',
@@ -20,7 +17,7 @@
             	$("#loading").fadeOut();
 				if (response.success == true) {
 					alertify.alert(response.message, function(){
-						window.location.href = '<?php echo base_url('admin/expert/add'); ?>';
+						window.location.href = '<?php echo base_url('admin/administration/add'); ?>';
 					});
 				}
 				else {
@@ -39,16 +36,13 @@
 			}
 		});
 	});
-  $('#expertupdate').submit(function(e) {
+  $('#administrationupdate').submit(function(e) {
 		$("#loading").addClass('overlay dark');
     	$("#loading").html('<i class="fa fa-spinner fa-pulse"></i>');
 
 		e.preventDefault();
 		var me = $(this);
-		for (instance in CKEDITOR.instances) 
-		{
-       	CKEDITOR.instances[instance].updateElement();
-        }
+		
 		$.ajax({
 			url: me.attr('action'),
 			type: 'post',
@@ -61,7 +55,7 @@
             	$("#loading").fadeOut();
 				if (response.success == true) {
 					alertify.alert(response.message, function(){
-						window.location.href = '<?php echo base_url('admin/expert'); ?>';
+						window.location.href = '<?php echo base_url('admin/administration'); ?>';
 					});
 				}
 				else {
